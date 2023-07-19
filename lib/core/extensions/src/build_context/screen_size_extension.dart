@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 extension ScreenSizeExtension on BuildContext {
   double get screenWidth => MediaQuery.sizeOf(this).width;
