@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bci_assessment_app/features/features.dart';
-import 'package:flutter_bci_assessment_app/features/src/create_user/pages/split_view_page.dart';
-import 'package:flutter_bci_assessment_app/features/src/create_user/pages/users_list_page.dart';
-import 'package:flutter_bci_assessment_app/features/src/create_user/widgets/drawar_widget.dart';
+import 'package:flutter_bci_assessment_app/features/src/pages/split_view_page.dart';
+import 'package:flutter_bci_assessment_app/features/src/pages/users_list_page.dart';
+import 'package:flutter_bci_assessment_app/features/src/widgets/drawer_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'app_routers_names.dart';
 import 'app_routers_paths.dart';

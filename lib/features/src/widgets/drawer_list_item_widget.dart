@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../shared_widgets/src/adaptive_text_button.dart';
-import '../models/drawer_item.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/features/src/models/drawer_item.dart';
 
 class DrawerListItem extends StatelessWidget {
   const DrawerListItem({

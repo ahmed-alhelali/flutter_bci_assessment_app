@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bci_assessment_app/features/features.dart';
 
 import 'wrapper_page.dart';
 

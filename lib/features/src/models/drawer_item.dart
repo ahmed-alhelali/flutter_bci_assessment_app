@@ -1,13 +1,4 @@
-enum DrawerItemId {
-  dashboard,
-  report,
-  userManagement,
-  branchAndInventory,
-  invoices,
-  contacts,
-  promotion,
-  settings
-}
+import 'package:flutter_bci_assessment_app/features/src/enums/drawer_item_id.dart';
 
 class DrawerItem {
   const DrawerItem({
