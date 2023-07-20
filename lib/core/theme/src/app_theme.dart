@@ -14,6 +14,30 @@ class AppTheme {
         scaffoldBackgroundColor: AppColors.kScaffoldBackgroundColor,
         primaryColorLight: AppColors.kPrimaryColorMain,
         brightness: Brightness.light,
+        appBarTheme: AppBarTheme(
+          color: AppColors.kPrimaryColorSecondary,
+          titleTextStyle: GoogleFonts.inter(
+            color: AppColors.kFontColorBlack,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+          centerTitle: false,
+          elevation: 0.0,
+          shape: const Border(
+            top: BorderSide(
+              color: AppColors.kBorderColorMain,
+              width: 1,
+            ),
+            bottom: BorderSide(
+              color: AppColors.kBorderColorMain,
+              width: 1,
+            ),
+            left: BorderSide(
+              color: AppColors.kBorderColorMain,
+              width: 1,
+            ),
+          ),
+        ),
         textTheme: TextTheme(
           bodySmall: GoogleFonts.inter(
             color: AppColors.kFontColorBlack,

@@ -6,6 +6,8 @@ class AppColors {
   static const Color kPrimaryColorMain = Color(0xffFAFAFA);
   static const Color kPrimaryColorSecondary = Color(0xffF0F0F0);
 
+  static const Color kBorderColorMain = Color(0xffD0D0D0);
+
   static const Color kSecondaryColorMain = Color(0xff797979);
 
   static const Color kErrorColor = Color(0xffEB5757);
