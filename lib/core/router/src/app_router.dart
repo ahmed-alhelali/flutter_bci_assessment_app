@@ -43,7 +43,7 @@ class AppRouter {
               GoRoute(
                 path: AppRoutePaths.createUser,
                 name: AppRouteNames.createUser,
-                builder: (context, state) => const CreateUserWrapper(),
+                builder: (context, state) => const Offstage(),
               ),
             ],
           ),

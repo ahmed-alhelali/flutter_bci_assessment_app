@@ -9,6 +9,9 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ancestorScaffold = Scaffold.maybeOf(context);
+
+    final hasDrawer = ancestorScaffold != null && ancestorScaffold.hasDrawer;
     return Scaffold(
       backgroundColor: AppColors.kPrimaryColorMain,
       appBar: AppBar(
@@ -22,9 +25,8 @@ class DrawerWidget extends StatelessWidget {
               icon: const AppIcon(
                 icon: AppIcons.kDrawerIcon,
               ),
-              onPressed: () {
-                Scaffold.maybeOf(context)!.closeDrawer();
-              },
+              onPressed:
+                  hasDrawer ? () => ancestorScaffold.closeDrawer() : null,
             ),
           ),
         ],
