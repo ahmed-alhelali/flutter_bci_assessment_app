@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bci_assessment_app/features/src/pages/split_view_page.dart';
+import 'package:flutter_bci_assessment_app/features/src/pages/create_user_page.dart';
+import 'package:flutter_bci_assessment_app/features/src/pages/split_page.dart';
 import 'package:flutter_bci_assessment_app/features/src/pages/users_list_page.dart';
 import 'package:flutter_bci_assessment_app/features/src/widgets/drawer_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -29,9 +30,9 @@ class AppRouter {
           GoRoute(
             path: '${AppRoutePaths.appRoot}${AppRoutePaths.createUser}',
             name: '${AppRoutePaths.appRoot}${AppRoutePaths.createUser}',
-            builder: (context, state) => const SplitViewPage(
-              menu: DrawerWidget(),
-              content: UsersListPage(),
+            builder: (context, state) => const SplitPage(
+              appDrawer: DrawerWidget(),
+              appContent: CreateUserPage(),
             ),
             routes: [
               GoRoute(

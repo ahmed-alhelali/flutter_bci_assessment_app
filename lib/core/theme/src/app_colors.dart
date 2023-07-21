@@ -10,6 +10,9 @@ class AppColors {
 
   static const Color kSecondaryColorMain = Color(0xff797979);
 
+  static const Color kPrimaryElevatedButtonColor = Color(0xffEAEAEA);
+  static const Color kSecondaryElevatedButtonColor = Color(0xffFFFFFF);
+
   static const Color kErrorColor = Color(0xffEB5757);
 
   static const Color kFontColorBlack = Color(0xff202020);

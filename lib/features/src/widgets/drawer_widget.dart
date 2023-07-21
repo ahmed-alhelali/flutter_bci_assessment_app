@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/features/src/configs/app_strings.dart';
 
 import '../configs/drawer_items.dart';
 import 'drawer_list_item_widget.dart';
@@ -16,7 +17,7 @@ class DrawerWidget extends StatelessWidget {
       backgroundColor: AppColors.kPrimaryColorMain,
       appBar: AppBar(
         title: const Text(
-          "TestX",
+          AppStrings.testX,
         ),
         actions: [
           Padding(
@@ -39,9 +40,7 @@ class DrawerWidget extends StatelessWidget {
             DrawerListItem(
               item: item,
               hasTrailing: item.hasTrailing,
-              onPressed: () {
-                // Scaffold.of(context).closeDrawer();
-              },
+              onPressed: () {},
             ),
         ],
       ),

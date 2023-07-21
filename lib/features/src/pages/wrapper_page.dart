@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/features/src/configs/app_strings.dart';
 
 class WrapperPage extends StatelessWidget {
   const WrapperPage({
     Key? key,
-    required this.title,
-    this.actions = const [],
     this.body,
-    this.floatingActionButton,
   }) : super(key: key);
-  final String title;
-  final List<Widget> actions;
+
   final Widget? body;
-  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +25,54 @@ class WrapperPage extends StatelessWidget {
                     hasDrawer ? () => ancestorScaffold.openDrawer() : null,
               )
             : null,
-        title: Text(title),
-        actions: actions,
+        title: const Text(
+          AppStrings.userManagement,
+        ),
+        actions: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: IconButton(
+                  icon: const AppIcon(
+                    icon: AppIcons.kNotificationsIcon,
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 0),
+                child: IconButton(
+                  icon: const AppIcon(
+                    icon: AppIcons.kInfoIcon,
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  children: [
+                    Text(
+                      AppStrings.superAdmin,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    AppGaps.kGap4,
+                    const AppIcon(
+                      icon: AppIcons.kArrowDownIcon,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+        backgroundColor: Colors.transparent,
       ),
-      body: body,
-      floatingActionButton: floatingActionButton,
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: body,
+      ),
     );
   }
 }
