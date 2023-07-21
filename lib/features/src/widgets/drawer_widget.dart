@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/features/src/configs/app_strings.dart';
-
-import '../configs/drawer_items.dart';
 import 'drawer_list_item_widget.dart';
 
 class DrawerWidget extends StatelessWidget {

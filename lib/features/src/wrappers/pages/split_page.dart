@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bci_assessment_app/core/theme/src/app_break_points.dart';
+import 'package:flutter_bci_assessment_app/core/core.dart';
 
 class SplitPage extends StatelessWidget {
   const SplitPage({

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/features/src/configs/app_strings.dart';
-
-import 'wrapper_page.dart';
+import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
 
 class CreateUserPage extends StatefulWidget {
   const CreateUserPage({

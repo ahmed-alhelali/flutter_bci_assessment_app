@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bci_assessment_app/core/theme/src/app_colors.dart';
+import 'package:flutter_bci_assessment_app/core/src/theme/app_colors.dart';
 
 class AdaptiveTextButton extends StatelessWidget {
   const AdaptiveTextButton({

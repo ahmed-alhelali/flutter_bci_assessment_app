@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/features/src/configs/app_strings.dart';
 
 class WrapperPage extends StatelessWidget {
   const WrapperPage({

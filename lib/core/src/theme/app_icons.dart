@@ -11,7 +11,7 @@ class AppIcons {
   static const String kPromotionIcon = 'assets/icons/promotion_icon.svg';
   static const String kReportIcon = 'assets/icons/report_icon.svg';
   static const String kSettingsIcon = 'assets/icons/settings_icon.svg';
-  static const String kUserIcon = 'assets/icons/userIcon.svg';
+  static const String kUserIcon = 'assets/icons/user_icon.svg';
   static const String kArrowDownIcon = 'assets/icons/arrow_down_icon.svg';
   static const String kPlusIcon = 'assets/icons/plus_icon.svg';
 }

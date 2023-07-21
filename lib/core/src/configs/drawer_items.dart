@@ -1,7 +1,7 @@
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/features/src/configs/app_strings.dart';
-import 'package:flutter_bci_assessment_app/features/src/models/drawer_item.dart';
-import 'package:flutter_bci_assessment_app/features/src/enums/drawer_item_id.dart';
+import 'app_strings.dart';
+import 'enums/drawer_item_id.dart';
+import 'models/drawer_item.dart';
 
 List<DrawerItem> drawerItems = [
   const DrawerItem(
@@ -19,8 +19,7 @@ List<DrawerItem> drawerItems = [
   const DrawerItem(
     id: DrawerItemId.userManagement,
     title: AppStrings.userManagement,
-    icon: AppIcons.kReportIcon,
-    // icon: AppIcons.kUserIcon,
+    icon: AppIcons.kUserIcon,
     hasTrailing: true,
   ),
   const DrawerItem(
