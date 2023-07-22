@@ -4,18 +4,33 @@ part 'user.freezed.dart';
 
 part 'user.g.dart';
 
+/*
+{
+      "name": "name test",
+      "phone": "23232355858",
+      "email": "ah744555@gmail.com",
+      "branch": "branch1",
+      "city": "city1",
+      "country": "egypt",
+      "password": "wewe123@#",
+      "age": "22",
+      "account": "user",
+      "address": "text",
+    },
+ */
 @freezed
 class User with _$User {
   const factory User({
     int? id,
     required String name,
     required String phone,
+    required String email,
     required String branch,
-    required String account,
-    required String age,
-    required String address,
     required String city,
     required String country,
+    required String account,
+    required String address,
+    required String age,
     required String password,
     @JsonKey(name: 'created_at') String? createdAt,
   }) = _User;

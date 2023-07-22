@@ -23,12 +23,13 @@ mixin _$User {
   int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get branch => throw _privateConstructorUsedError;
-  String get account => throw _privateConstructorUsedError;
-  String get age => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get country => throw _privateConstructorUsedError;
+  String get account => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get age => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
@@ -47,12 +48,13 @@ abstract class $UserCopyWith<$Res> {
       {int? id,
       String name,
       String phone,
+      String email,
       String branch,
-      String account,
-      String age,
-      String address,
       String city,
       String country,
+      String account,
+      String address,
+      String age,
       String password,
       @JsonKey(name: 'created_at') String? createdAt});
 }
@@ -73,12 +75,13 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? id = freezed,
     Object? name = null,
     Object? phone = null,
+    Object? email = null,
     Object? branch = null,
-    Object? account = null,
-    Object? age = null,
-    Object? address = null,
     Object? city = null,
     Object? country = null,
+    Object? account = null,
+    Object? address = null,
+    Object? age = null,
     Object? password = null,
     Object? createdAt = freezed,
   }) {
@@ -95,21 +98,13 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       branch: null == branch
           ? _value.branch
           : branch // ignore: cast_nullable_to_non_nullable
-              as String,
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
               as String,
       city: null == city
           ? _value.city
@@ -118,6 +113,18 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      account: null == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -141,12 +148,13 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       {int? id,
       String name,
       String phone,
+      String email,
       String branch,
-      String account,
-      String age,
-      String address,
       String city,
       String country,
+      String account,
+      String address,
+      String age,
       String password,
       @JsonKey(name: 'created_at') String? createdAt});
 }
@@ -163,12 +171,13 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? id = freezed,
     Object? name = null,
     Object? phone = null,
+    Object? email = null,
     Object? branch = null,
-    Object? account = null,
-    Object? age = null,
-    Object? address = null,
     Object? city = null,
     Object? country = null,
+    Object? account = null,
+    Object? address = null,
+    Object? age = null,
     Object? password = null,
     Object? createdAt = freezed,
   }) {
@@ -185,21 +194,13 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       branch: null == branch
           ? _value.branch
           : branch // ignore: cast_nullable_to_non_nullable
-              as String,
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
               as String,
       city: null == city
           ? _value.city
@@ -208,6 +209,18 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
       country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      account: null == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -228,12 +241,13 @@ class _$_User implements _User {
       {this.id,
       required this.name,
       required this.phone,
+      required this.email,
       required this.branch,
-      required this.account,
-      required this.age,
-      required this.address,
       required this.city,
       required this.country,
+      required this.account,
+      required this.address,
+      required this.age,
       required this.password,
       @JsonKey(name: 'created_at') this.createdAt});
 
@@ -246,17 +260,19 @@ class _$_User implements _User {
   @override
   final String phone;
   @override
+  final String email;
+  @override
   final String branch;
-  @override
-  final String account;
-  @override
-  final String age;
-  @override
-  final String address;
   @override
   final String city;
   @override
   final String country;
+  @override
+  final String account;
+  @override
+  final String address;
+  @override
+  final String age;
   @override
   final String password;
   @override
@@ -265,7 +281,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, phone: $phone, branch: $branch, account: $account, age: $age, address: $address, city: $city, country: $country, password: $password, createdAt: $createdAt)';
+    return 'User(id: $id, name: $name, phone: $phone, email: $email, branch: $branch, city: $city, country: $country, account: $account, address: $address, age: $age, password: $password, createdAt: $createdAt)';
   }
 
   @override
@@ -276,12 +292,13 @@ class _$_User implements _User {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.branch, branch) || other.branch == branch) &&
-            (identical(other.account, account) || other.account == account) &&
-            (identical(other.age, age) || other.age == age) &&
-            (identical(other.address, address) || other.address == address) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.country, country) || other.country == country) &&
+            (identical(other.account, account) || other.account == account) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.age, age) || other.age == age) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.createdAt, createdAt) ||
@@ -290,8 +307,8 @@ class _$_User implements _User {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, phone, branch, account,
-      age, address, city, country, password, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, name, phone, email, branch,
+      city, country, account, address, age, password, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -312,12 +329,13 @@ abstract class _User implements User {
       {final int? id,
       required final String name,
       required final String phone,
+      required final String email,
       required final String branch,
-      required final String account,
-      required final String age,
-      required final String address,
       required final String city,
       required final String country,
+      required final String account,
+      required final String address,
+      required final String age,
       required final String password,
       @JsonKey(name: 'created_at') final String? createdAt}) = _$_User;
 
@@ -330,17 +348,19 @@ abstract class _User implements User {
   @override
   String get phone;
   @override
+  String get email;
+  @override
   String get branch;
-  @override
-  String get account;
-  @override
-  String get age;
-  @override
-  String get address;
   @override
   String get city;
   @override
   String get country;
+  @override
+  String get account;
+  @override
+  String get address;
+  @override
+  String get age;
   @override
   String get password;
   @override

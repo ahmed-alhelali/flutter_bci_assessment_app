@@ -5,6 +5,7 @@ import 'package:flutter_bci_assessment_app/core/src/configs/items/account_drop_d
 import 'package:flutter_bci_assessment_app/core/src/configs/items/branch_drop_down_items.dart';
 import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/api_services_state_notifier_provider.dart';
+import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/theme/app_formatters.dart';
 import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,7 +56,7 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
 
   @override
   void dispose() {
-    createUserFormKey.currentState!.dispose();
+    createUserFormKey.currentState?.dispose();
     nameController.dispose();
     emailController.dispose();
     phoneNumberController.dispose();
@@ -800,7 +801,13 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         AppColors.kSecondaryElevatedButtonColor,
                                       ),
                                     ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  ref
+                                      .read(selectedPageNameProvider.notifier)
+                                      .update(
+                                        (state) => AppRouteNames.usersList,
+                                      );
+                                },
                                 child: Text(
                                   AppStrings.cancel,
                                   style:
@@ -819,6 +826,7 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     User user = User(
                                       name: nameController.text,
                                       phone: phoneNumberController.text,
+                                      email: emailController.text,
                                       branch: assignBranchController
                                           .dropDownValue!.value,
                                       account: accountController
@@ -828,12 +836,14 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                       city: cityController.text,
                                       country: countryController.text,
                                       password: passwordController.text,
+                                      createdAt:
+                                          DateTime.now().toIso8601String(),
                                     );
 
                                     await ref
                                         .read(apiServiceStateNotifierProvider
                                             .notifier)
-                                        .createUser(user: user);
+                                        .createUser(ref: ref, user: user);
                                   }
                                 },
                                 child: Text(

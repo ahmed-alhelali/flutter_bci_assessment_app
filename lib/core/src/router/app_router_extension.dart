@@ -5,7 +5,7 @@ import 'app_routers_names.dart';
 extension AppRouterExtension on BuildContext {
   void pushHome() {
     GoRouter.of(this).pushNamed(
-      AppRouteNames.home,
+      AppRouteNames.usersList,
     );
   }
 

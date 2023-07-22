@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/services/api_services.dart';
 import 'package:flutter_bci_assessment_app/core/src/typedefs/typedefs.dart';
 import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
@@ -29,7 +30,10 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
     }
   }
 
-  Future<RequestSucceeded> createUser({required User user}) async {
+  Future<RequestSucceeded> createUser({
+    required WidgetRef ref,
+    required User user,
+  }) async {
     isLoading = true;
     final requestSucceeded = await _apiServices.createUser(user: user);
 
@@ -43,7 +47,9 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
               fit: BoxFit.fill,
             ),
           );
-
+      ref.read(selectedPageNameProvider.notifier).update(
+            (state) => AppRouteNames.usersList,
+          );
       await Future.delayed(const Duration(seconds: 2));
     } else {
       LoadingWidget.instance().controller!.update(
@@ -55,7 +61,9 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
               fit: BoxFit.fill,
             ),
           );
-
+      ref.read(selectedPageNameProvider.notifier).update(
+            (state) => AppRouteNames.usersList,
+          );
       await Future.delayed(const Duration(seconds: 2));
     }
 
