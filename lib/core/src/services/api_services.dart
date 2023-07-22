@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_bci_assessment_app/core/src/debugging/debugging_extension.dart';
 import 'package:flutter_bci_assessment_app/core/src/debugging/debugging_strings_collectors.dart';
+import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
 import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
 import 'package:flutter_bci_assessment_app/core/src/typedefs/typedefs.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +10,7 @@ import 'package:http/http.dart' as http;
 class ApiServices {
   ApiServices();
 
-  Future<List<User>?> fetchUsers({CurrentPage? currentPage}) async {
+  Future<Response?> fetchUsers({CurrentPage? currentPage}) async {
     final url = Uri.https(
       'bci.net.sa',
       '/api/show_users',
@@ -30,12 +31,11 @@ class ApiServices {
         debuggingValue.log();
 
         Map<String, dynamic> jsonData = json.decode(res.body);
-        List<dynamic> data = jsonData['users']['data'];
+        final data = jsonData['users'];
 
-        List<User> users =
-            data.map((userJson) => User.fromJson(userJson)).toList();
+        Response response = Response.fromJson(data);
 
-        return users;
+        return response;
       } else {
         final String debuggingValue =
             DebuggingStringsCollectors.fetchUserExceptionStringsCollector(

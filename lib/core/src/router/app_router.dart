@@ -35,7 +35,10 @@ class AppRouter {
             name: '${AppRoutePaths.appRoot}${AppRoutePaths.createUser}',
             builder: (context, state) => SplitPage(
               appDrawer: const DrawerWidget(),
-              appContent: ref.watch(selectedPageBuilderProvider)(context),
+              appContent: Stack(children: [
+                const UsersListPage(),
+                ref.watch(selectedPageBuilderProvider)(context),
+              ]),
             ),
             routes: [
               GoRoute(

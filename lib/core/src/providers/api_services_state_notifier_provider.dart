@@ -4,4 +4,4 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final apiServiceStateNotifierProvider =
     StateNotifierProvider<ApiServiceStateNotifier, IsLoading>(
-        (ref) => ApiServiceStateNotifier());
+        (ref) => ApiServiceStateNotifier(),);

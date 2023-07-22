@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/services/api_services.dart';
 import 'package:flutter_bci_assessment_app/core/src/typedefs/typedefs.dart';
@@ -16,13 +17,18 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
 
   final _apiServices = ApiServices();
 
-  Future<List<User>?> fetchUsers({CurrentPage? currentPage}) async {
+  Future<Response?> fetchUsers({CurrentPage? currentPage}) async {
+    //this future.delayed is because we getting the usual exception : Providers are not allowed to modify other providers during their initialization
+    await Future.delayed(const Duration(milliseconds: 200));
+
     isLoading = true;
 
+    await Future.delayed(const Duration(seconds: 1));
+
     try {
-      List<User>? users =
+      Response? response =
           await _apiServices.fetchUsers(currentPage: currentPage);
-      return users;
+      return response;
     } catch (e) {
       return null;
     } finally {
