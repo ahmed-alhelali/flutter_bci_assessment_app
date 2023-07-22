@@ -5,6 +5,7 @@ class AppIcons {
   static const String kDashboardIcon = 'assets/icons/dashboard_icon.svg';
   static const String kDrawerIcon = 'assets/icons/drawer_icon.svg';
   static const String kEyeIcon = 'assets/icons/eye_icon.svg';
+  static const String kDisableEyeIcon = 'assets/icons/disable_eye_icon.svg';
   static const String kInfoIcon = 'assets/icons/info_icon.svg';
   static const String kInvoiceIcon = 'assets/icons/invoice_icon.svg';
   static const String kNotificationsIcon = 'assets/icons/notifications_icon.svg';

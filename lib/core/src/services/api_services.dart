@@ -65,19 +65,7 @@ class ApiServices {
     try {
       final res = await http.post(
         url,
-        // body: user.toJson(),
-        body: {
-          "name": "a",
-          "phone": "1231",
-          "email": "ahm@gmail.com",
-          "branch": "ba",
-          "city": "dc",
-          "country": "sa",
-          // "password": "weweasd2123",
-          "age": "12",
-          "account": "user",
-          "address": "ad",
-        },
+        body: user.toJson(),
       );
       if (res.statusCode == 200) {
         final String debuggingValue =

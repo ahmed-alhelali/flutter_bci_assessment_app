@@ -31,7 +31,7 @@ mixin _$User {
   String get country => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  String get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +54,7 @@ abstract class $UserCopyWith<$Res> {
       String city,
       String country,
       String password,
-      @JsonKey(name: 'created_at') String createdAt});
+      @JsonKey(name: 'created_at') String? createdAt});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? city = null,
     Object? country = null,
     Object? password = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -123,10 +123,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -148,7 +148,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String city,
       String country,
       String password,
-      @JsonKey(name: 'created_at') String createdAt});
+      @JsonKey(name: 'created_at') String? createdAt});
 }
 
 /// @nodoc
@@ -170,7 +170,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? city = null,
     Object? country = null,
     Object? password = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_User(
       id: freezed == id
@@ -213,10 +213,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -235,7 +235,7 @@ class _$_User implements _User {
       required this.city,
       required this.country,
       required this.password,
-      @JsonKey(name: 'created_at') required this.createdAt});
+      @JsonKey(name: 'created_at') this.createdAt});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -261,7 +261,7 @@ class _$_User implements _User {
   final String password;
   @override
   @JsonKey(name: 'created_at')
-  final String createdAt;
+  final String? createdAt;
 
   @override
   String toString() {
@@ -319,7 +319,7 @@ abstract class _User implements User {
       required final String city,
       required final String country,
       required final String password,
-      @JsonKey(name: 'created_at') required final String createdAt}) = _$_User;
+      @JsonKey(name: 'created_at') final String? createdAt}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -345,7 +345,7 @@ abstract class _User implements User {
   String get password;
   @override
   @JsonKey(name: 'created_at')
-  String get createdAt;
+  String? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

@@ -17,7 +17,7 @@ class User with _$User {
     required String city,
     required String country,
     required String password,
-    @JsonKey(name: 'created_at') required String createdAt,
+    @JsonKey(name: 'created_at') String? createdAt,
   }) = _User;
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);

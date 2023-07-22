@@ -19,6 +19,10 @@ class CreateUserPage extends ConsumerStatefulWidget {
 }
 
 class _CreateUserPageState extends ConsumerState<CreateUserPage> {
+  GlobalKey<FormState> createUserFormKey = GlobalKey();
+
+  late bool passwordObscure;
+  late bool passwordConfirmationsObscure;
   late TextEditingController nameController;
   late TextEditingController emailController;
   late TextEditingController phoneNumberController;
@@ -34,7 +38,8 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
   @override
   void initState() {
     super.initState();
-
+    passwordObscure = true;
+    passwordConfirmationsObscure = true;
     nameController = TextEditingController();
     emailController = TextEditingController();
     phoneNumberController = TextEditingController();
@@ -50,6 +55,7 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
 
   @override
   void dispose() {
+    createUserFormKey.currentState!.dispose();
     nameController.dispose();
     emailController.dispose();
     phoneNumberController.dispose();
@@ -93,6 +99,7 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                         AppGaps.kGap12,
                         if (constrainsWidth <= 480)
                           Form(
+                            key: createUserFormKey,
                             child: Column(
                               children: [
                                 TextFormField(
@@ -100,6 +107,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   decoration: const InputDecoration(
                                     labelText: AppStrings.name,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Name is required';
+                                    }
+                                    return null;
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
@@ -111,6 +124,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   decoration: const InputDecoration(
                                     labelText: AppStrings.email,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Email is required';
+                                    }
+                                    return null;
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
@@ -118,19 +137,25 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   decoration: const InputDecoration(
                                     labelText: AppStrings.phoneNumber,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Phone number is required';
+                                    }
+                                    return null;
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 DropDownTextField(
+                                  controller: assignBranchController,
                                   clearOption: true,
                                   textFieldDecoration: const InputDecoration(
                                     labelText: AppStrings.assignBranch,
                                   ),
                                   validator: (value) {
-                                    if (value == null) {
-                                      return "Required field";
-                                    } else {
-                                      return null;
+                                    if (value == null || value.isEmpty) {
+                                      return 'Branch is required';
                                     }
+                                    return null;
                                   },
                                   dropDownItemCount: branchDropDownItems.length,
                                   dropDownList: branchDropDownItems,
@@ -144,8 +169,8 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   clearOption: true,
                                   controller: accountController,
                                   validator: (value) {
-                                    if (value == null) {
-                                      return "Required field";
+                                    if (value == null || value.isEmpty) {
+                                      return "Required is required";
                                     } else {
                                       return null;
                                     }
@@ -165,6 +190,13 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   decoration: const InputDecoration(
                                     labelText: AppStrings.age,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Age is required";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
@@ -172,6 +204,13 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   decoration: const InputDecoration(
                                     labelText: AppStrings.address,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Address is required";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
@@ -179,6 +218,13 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   decoration: const InputDecoration(
                                     labelText: AppStrings.city,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "City is required";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
@@ -186,38 +232,81 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   decoration: const InputDecoration(
                                     labelText: AppStrings.country,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Country is required";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
+                                  obscureText: passwordObscure,
                                   controller: passwordController,
                                   decoration: InputDecoration(
                                     labelText: AppStrings.password,
                                     suffixIcon: IconButton(
-                                      icon: const AppIcon(
-                                        icon: AppIcons.kEyeIcon,
+                                      icon: AppIcon(
+                                        icon: passwordObscure
+                                            ? AppIcons.kDisableEyeIcon
+                                            : AppIcons.kEyeIcon,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          passwordObscure = !passwordObscure;
+                                        });
+                                      },
                                     ),
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Password is required";
+                                    } else if (passwordConfirmationController
+                                            .text !=
+                                        passwordController.text) {
+                                      return 'Password confirmation must match password';
+                                    }
+                                    return null;
+                                  },
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
+                                  obscureText: passwordConfirmationsObscure,
                                   controller: passwordConfirmationController,
                                   decoration: InputDecoration(
                                     labelText: AppStrings.confirmPassword,
                                     suffixIcon: IconButton(
-                                      icon: const AppIcon(
-                                        icon: AppIcons.kEyeIcon,
+                                      icon: AppIcon(
+                                        icon: passwordConfirmationsObscure
+                                            ? AppIcons.kDisableEyeIcon
+                                            : AppIcons.kEyeIcon,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          passwordConfirmationsObscure =
+                                              !passwordConfirmationsObscure;
+                                        });
+                                      },
                                     ),
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Password Confirmation is required";
+                                    } else if (passwordConfirmationController
+                                            .text !=
+                                        passwordController.text) {
+                                      return 'Password confirmation must match password';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ],
                             ),
                           ),
                         if (constrainsWidth > 480 && constrainsWidth <= 700)
                           Form(
+                            key: createUserFormKey,
                             child: Column(
                               children: [
                                 Row(
@@ -228,6 +317,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         decoration: const InputDecoration(
                                           labelText: AppStrings.name,
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Name is required';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                     AppGaps.kGap12,
@@ -242,6 +337,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         decoration: const InputDecoration(
                                           labelText: AppStrings.email,
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Email is required';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ],
@@ -255,22 +356,28 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         decoration: const InputDecoration(
                                           labelText: AppStrings.phoneNumber,
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Phone number is required';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                     AppGaps.kGap12,
                                     Expanded(
                                       child: DropDownTextField(
+                                        controller: assignBranchController,
                                         clearOption: true,
                                         textFieldDecoration:
                                             const InputDecoration(
                                           labelText: AppStrings.assignBranch,
                                         ),
                                         validator: (value) {
-                                          if (value == null) {
-                                            return "Required field";
-                                          } else {
-                                            return null;
+                                          if (value == null || value.isEmpty) {
+                                            return 'Branch is required';
                                           }
+                                          return null;
                                         },
                                         dropDownItemCount:
                                             branchDropDownItems.length,
@@ -288,11 +395,10 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         clearOption: true,
                                         controller: accountController,
                                         validator: (value) {
-                                          if (value == null) {
-                                            return "Required field";
-                                          } else {
-                                            return null;
+                                          if (value == null || value.isEmpty) {
+                                            return 'Account is required';
                                           }
+                                          return null;
                                         },
                                         textFieldDecoration:
                                             const InputDecoration(
@@ -315,6 +421,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         decoration: const InputDecoration(
                                           labelText: AppStrings.age,
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Age is required';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ],
@@ -328,6 +440,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         decoration: const InputDecoration(
                                           labelText: AppStrings.address,
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Address is required';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                     AppGaps.kGap12,
@@ -337,6 +455,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         decoration: const InputDecoration(
                                           labelText: AppStrings.city,
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'City is required';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ],
@@ -350,43 +474,86 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                         decoration: const InputDecoration(
                                           labelText: AppStrings.country,
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Country is required';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                     AppGaps.kGap12,
                                     Expanded(
                                       child: TextFormField(
+                                        obscureText: passwordObscure,
                                         controller: passwordController,
                                         decoration: InputDecoration(
                                           labelText: AppStrings.password,
                                           suffixIcon: IconButton(
-                                            icon: const AppIcon(
-                                              icon: AppIcons.kEyeIcon,
+                                            icon: AppIcon(
+                                              icon: passwordObscure
+                                                  ? AppIcons.kDisableEyeIcon
+                                                  : AppIcons.kEyeIcon,
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              setState(() {
+                                                passwordObscure =
+                                                    !passwordObscure;
+                                              });
+                                            },
                                           ),
                                         ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Password is required';
+                                          } else if (passwordConfirmationController
+                                                  .text !=
+                                              passwordController.text) {
+                                            return 'Password confirmation must match password';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                   ],
                                 ),
                                 AppGaps.kGap12,
                                 TextFormField(
+                                  obscureText: passwordConfirmationsObscure,
                                   controller: passwordConfirmationController,
                                   decoration: InputDecoration(
                                     labelText: AppStrings.confirmPassword,
                                     suffixIcon: IconButton(
-                                      icon: const AppIcon(
-                                        icon: AppIcons.kEyeIcon,
+                                      icon: AppIcon(
+                                        icon: passwordConfirmationsObscure
+                                            ? AppIcons.kDisableEyeIcon
+                                            : AppIcons.kEyeIcon,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          passwordConfirmationsObscure =
+                                              !passwordConfirmationsObscure;
+                                        });
+                                      },
                                     ),
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Password confirmation is required';
+                                    } else if (passwordConfirmationController
+                                            .text !=
+                                        passwordController.text) {
+                                      return 'Password confirmation must match password';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ],
                             ),
                           ),
                         if (constrainsWidth > 700)
                           Form(
+                            key: createUserFormKey,
                             child: Wrap(
                               crossAxisAlignment: WrapCrossAlignment.center,
                               runSpacing: 10,
@@ -399,6 +566,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.name,
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Name is required';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -412,6 +585,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.email,
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Email is required';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -421,21 +600,27 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.phoneNumber,
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Phone number is required';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
                                   child: DropDownTextField(
+                                    controller: assignBranchController,
                                     clearOption: true,
                                     textFieldDecoration: const InputDecoration(
                                       labelText: AppStrings.assignBranch,
                                     ),
                                     validator: (value) {
-                                      if (value == null) {
-                                        return "Required field";
-                                      } else {
-                                        return null;
+                                      if (value == null || value.isEmpty) {
+                                        return 'Branch is required';
                                       }
+                                      return null;
                                     },
                                     dropDownItemCount:
                                         branchDropDownItems.length,
@@ -449,11 +634,10 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     clearOption: true,
                                     controller: accountController,
                                     validator: (value) {
-                                      if (value == null) {
-                                        return "Required field";
-                                      } else {
-                                        return null;
+                                      if (value == null || value.isEmpty) {
+                                        return 'Account is required';
                                       }
+                                      return null;
                                     },
                                     textFieldDecoration: const InputDecoration(
                                       labelText: AppStrings.account,
@@ -475,6 +659,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.age,
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Age is required';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -484,6 +674,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.address,
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Address is required';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -493,6 +689,12 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.city,
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'City is required';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -502,36 +704,77 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.country,
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Country is required';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.49,
                                   child: TextFormField(
+                                    obscureText: passwordObscure,
                                     controller: passwordController,
                                     decoration: InputDecoration(
                                       labelText: AppStrings.password,
                                       suffixIcon: IconButton(
-                                        icon: const AppIcon(
-                                          icon: AppIcons.kEyeIcon,
+                                        icon: AppIcon(
+                                          icon: passwordObscure
+                                              ? AppIcons.kDisableEyeIcon
+                                              : AppIcons.kEyeIcon,
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            passwordObscure = !passwordObscure;
+                                          });
+                                        },
                                       ),
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Password is required';
+                                      } else if (passwordConfirmationController
+                                              .text !=
+                                          passwordController.text) {
+                                        return 'Password confirmation must match password';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.49,
                                   child: TextFormField(
+                                    obscureText: passwordConfirmationsObscure,
                                     controller: passwordConfirmationController,
                                     decoration: InputDecoration(
                                       labelText: AppStrings.confirmPassword,
                                       suffixIcon: IconButton(
-                                        icon: const AppIcon(
-                                          icon: AppIcons.kEyeIcon,
+                                        icon: AppIcon(
+                                          icon: passwordConfirmationsObscure
+                                              ? AppIcons.kDisableEyeIcon
+                                              : AppIcons.kEyeIcon,
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          setState(() {
+                                            passwordConfirmationsObscure =
+                                                !passwordConfirmationsObscure;
+                                          });
+                                        },
                                       ),
                                     ),
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Password confirmation is required';
+                                      } else if (passwordConfirmationController
+                                              .text !=
+                                          passwordController.text) {
+                                        return 'Password confirmation must match password';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ),
                               ],
@@ -571,23 +814,27 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                               height: 40,
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  const user = User(
-                                    name: "name",
-                                    phone: "phone",
-                                    branch: "branch",
-                                    account: "account",
-                                    age: "age",
-                                    address: "address",
-                                    city: "city",
-                                    country: "country",
-                                    password: "password",
-                                    createdAt: "createdAt",
-                                  );
+                                  if (createUserFormKey.currentState!
+                                      .validate()) {
+                                    User user = User(
+                                      name: nameController.text,
+                                      phone: phoneNumberController.text,
+                                      branch: assignBranchController
+                                          .dropDownValue!.value,
+                                      account: accountController
+                                          .dropDownValue!.value,
+                                      age: ageController.text,
+                                      address: addressController.text,
+                                      city: cityController.text,
+                                      country: countryController.text,
+                                      password: passwordController.text,
+                                    );
 
-                                  await ref
-                                      .read(apiServiceStateNotifierProvider
-                                          .notifier)
-                                      .createUser(user: user);
+                                    await ref
+                                        .read(apiServiceStateNotifierProvider
+                                            .notifier)
+                                        .createUser(user: user);
+                                  }
                                 },
                                 child: Text(
                                   AppStrings.save,

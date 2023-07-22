@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/strings/app_strings.dart';
 import 'package:flutter_bci_assessment_app/core/src/services/api_services.dart';
 import 'package:flutter_bci_assessment_app/core/src/typedefs/typedefs.dart';
 import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
@@ -30,11 +29,11 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
     }
   }
 
-  Future<bool> createUser({required User user}) async {
+  Future<RequestSucceeded> createUser({required User user}) async {
     isLoading = true;
-    final requestStatus = await _apiServices.createUser(user: user);
+    final requestSucceeded = await _apiServices.createUser(user: user);
 
-    if (requestStatus) {
+    if (requestSucceeded) {
       LoadingWidget.instance().controller!.update(
             AppStrings.createdSuccessfully,
             SvgPicture.asset(
@@ -61,6 +60,6 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
     }
 
     isLoading = false;
-    return requestStatus;
+    return requestSucceeded;
   }
 }
