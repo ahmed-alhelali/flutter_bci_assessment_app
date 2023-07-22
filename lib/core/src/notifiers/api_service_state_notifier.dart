@@ -30,11 +30,11 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
     }
   }
 
-  Future<bool> addUser({required User user}) async {
+  Future<bool> createUser({required User user}) async {
     isLoading = true;
+    final requestStatus = await _apiServices.createUser(user: user);
 
-    try {
-      await _apiServices.addUser(user: user);
+    if (requestStatus) {
       LoadingWidget.instance().controller!.update(
             AppStrings.createdSuccessfully,
             SvgPicture.asset(
@@ -46,12 +46,21 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
           );
 
       await Future.delayed(const Duration(seconds: 2));
+    } else {
+      LoadingWidget.instance().controller!.update(
+            AppStrings.somethingWentToWrong,
+            SvgPicture.asset(
+              AppIcons.kErrorIcon,
+              width: 40,
+              height: 40,
+              fit: BoxFit.fill,
+            ),
+          );
 
-      return true;
-    } catch (e) {
-      return false;
-    } finally {
-      isLoading = false;
+      await Future.delayed(const Duration(seconds: 2));
     }
+
+    isLoading = false;
+    return requestStatus;
   }
 }

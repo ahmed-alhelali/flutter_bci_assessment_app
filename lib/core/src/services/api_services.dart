@@ -56,7 +56,7 @@ class ApiServices {
     }
   }
 
-  Future<bool> addUser({required User user}) async {
+  Future<bool> createUser({required User user}) async {
     final url = Uri.https(
       'bci.net.sa',
       '/api/add_user',
@@ -80,14 +80,30 @@ class ApiServices {
         },
       );
       if (res.statusCode == 200) {
-        print('Response: ${res.body}');
+        final String debuggingValue =
+            DebuggingStringsCollectors.createUserSuccessStringsCollector(
+          returnedResponseBody: res.body,
+        );
+
+        debuggingValue.log();
+
         return true;
       } else {
-        print('Request failed with status: ${res.statusCode}');
+        final String debuggingValue =
+            DebuggingStringsCollectors.createUserExceptionStringsCollector(
+          errorMessage: "StatusCode ${res.statusCode}",
+        );
+
+        debuggingValue.log();
         return false;
       }
     } catch (e) {
-      "$e".log();
+      final String debuggingValue =
+          DebuggingStringsCollectors.createUserExceptionStringsCollector(
+        errorMessage: "The entire request fills | error: $e",
+      );
+
+      debuggingValue.log();
       return false;
     }
   }

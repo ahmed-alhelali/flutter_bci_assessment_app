@@ -14,4 +14,5 @@ class AppIcons {
   static const String kUserIcon = 'assets/icons/user_icon.svg';
   static const String kArrowDownIcon = 'assets/icons/arrow_down_icon.svg';
   static const String kPlusIcon = 'assets/icons/plus_icon.svg';
+  static const String kErrorIcon = 'assets/icons/error_icon.svg';
 }

@@ -2,6 +2,7 @@ class AppStrings {
   static const String loading = 'Loading';
   static const String testX = 'TestX';
   static const String createdSuccessfully = "Created Successfully!";
+  static const String somethingWentToWrong = "Something Wrong!";
 
   static const String superAdmin = 'Super Admin';
   static const String notifications = 'Notifications';

@@ -587,7 +587,7 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   await ref
                                       .read(apiServiceStateNotifierProvider
                                           .notifier)
-                                      .addUser(user: user);
+                                      .createUser(user: user);
                                 },
                                 child: Text(
                                   AppStrings.save,

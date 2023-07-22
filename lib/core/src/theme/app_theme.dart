@@ -12,6 +12,10 @@ class AppTheme {
         fontFamily: GoogleFonts.inter().fontFamily,
         scaffoldBackgroundColor: AppColors.kScaffoldBackgroundColor,
         primaryColorLight: AppColors.kPrimaryColorMain,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: AppColors.kFontColorGrey,
+          selectionColor: Colors.blue.shade50,
+        ),
         brightness: Brightness.light,
         appBarTheme: AppBarTheme(
           color: AppColors.kPrimaryColorSecondary,
@@ -58,7 +62,6 @@ class AppTheme {
           titleMedium: GoogleFonts.inter(
             color: AppColors.kFontColorBlack,
             fontSize: 16,
-            fontWeight: FontWeight.w500,
           ),
           titleLarge: GoogleFonts.inter(
             color: AppColors.kFontColorBlack,

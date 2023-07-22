@@ -69,6 +69,7 @@ class LoadingWidget {
                   borderRadius: BorderRadius.circular(45.0),
                 ),
                 height: 50,
+                margin: const EdgeInsets.symmetric(vertical: 8),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 child: Row(
