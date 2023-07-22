@@ -836,8 +836,6 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                       city: cityController.text,
                                       country: countryController.text,
                                       password: passwordController.text,
-                                      createdAt:
-                                          DateTime.now().toIso8601String(),
                                     );
 
                                     await ref
