@@ -1,7 +1,7 @@
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'app_strings.dart';
-import 'enums/drawer_item_id.dart';
-import 'models/drawer_item.dart';
+import '../strings/app_strings.dart';
+import '../enums/drawer_item_id.dart';
+import '../models/drawer_item.dart';
 
 List<DrawerItem> drawerItems = [
   const DrawerItem(

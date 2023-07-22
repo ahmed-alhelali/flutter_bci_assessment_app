@@ -1,8 +1,8 @@
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/account_drop_down_items.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/branch_drop_down_items.dart';
+import 'package:flutter_bci_assessment_app/core/src/configs/items/account_drop_down_items.dart';
+import 'package:flutter_bci_assessment_app/core/src/configs/items/branch_drop_down_items.dart';
 import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/api_services_state_notifier_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/theme/app_formatters.dart';

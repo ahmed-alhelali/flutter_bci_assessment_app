@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/app_strings.dart';
+import 'package:flutter_bci_assessment_app/core/src/configs/strings/app_strings.dart';
 import 'package:flutter_bci_assessment_app/core/src/services/api_services.dart';
 import 'package:flutter_bci_assessment_app/core/src/typedefs/typedefs.dart';
 import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';

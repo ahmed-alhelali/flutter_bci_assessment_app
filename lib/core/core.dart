@@ -1,5 +1,5 @@
-export 'src/configs/app_strings.dart';
-export 'src/configs/drawer_items.dart';
+export 'src/configs/strings/app_strings.dart';
+export 'src/configs/items/drawer_items.dart';
 export 'src/configs/enums/drawer_item_id.dart';
 export 'src/configs/models/drawer_item.dart';
 
