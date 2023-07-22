@@ -11,17 +11,17 @@ part 'response.g.dart';
 @freezed
 class Response with _$Response {
   const factory Response({
-    required CurrentPage? currentPage,
+    required CurrentPage? current_page,
     required List<User>? data,
-    required String? firstPageUrl,
+    required String? first_page_url,
     required int? from,
-    required int? lastPage,
-    required String? lastPageUrl,
+    required int? last_page,
+    required String? last_page_url,
     required List<Link>? links,
-    required String? nextPageUrl,
+    required String? next_page_url,
     required String? path,
-    required int? parPage,
-    required String? prevPageUrl,
+    required int? par_page,
+    required String? prev_page_url,
     required int? to,
     required int? total,
   }) = _Response;

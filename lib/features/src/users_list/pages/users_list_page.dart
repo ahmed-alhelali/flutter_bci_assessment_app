@@ -1,3 +1,4 @@
+import 'package:advanced_datatable/advanced_datatable_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
 import 'package:flutter_bci_assessment_app/core/src/configs/classes/users_data_table_source.dart';
@@ -21,19 +22,23 @@ class _StateUsersListPage extends ConsumerState<UsersListPage> {
 
   Future<void> fetchUsersList() async {
     final apiResponse =
-        await ref.read(apiServiceStateNotifierProvider.notifier).fetchUsers();
+        await ref.read(apiServiceStateNotifierProvider.notifier).fetchUsers(ref: ref);
 
+    //the mounted check is to makes sure we didn't call setState()
+    // if the widget disposed during the UI changes
     setState(() {
       response = apiResponse;
-      myData =
-          UsersDataTableSource(usersData: apiResponse!.data ?? [], ref: ref);
+      myData = UsersDataTableSource(
+          usersData: apiResponse!.data ?? [], ref: ref, response: apiResponse);
     });
   }
 
   @override
   void initState() {
     super.initState();
-    fetchUsersList();
+    if (context.mounted) {
+      fetchUsersList();
+    }
   }
 
   @override
@@ -80,7 +85,8 @@ class _StateUsersListPage extends ConsumerState<UsersListPage> {
                       .toList(),
                   horizontalMargin: 60,
                   rowsPerPage: 10,
-                  availableRowsPerPage: const [10, 20, 30],
+                  availableRowsPerPage: const [10],
+                  showFirstLastButtons: true,
                 ),
               AppGaps.kGap12,
             ],

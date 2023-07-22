@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/src/configs/items/table_row_cells_items.dart';
+import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
 import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UsersDataTableSource extends DataTableSource {
   final List<User> usersData;
   WidgetRef ref;
+  Response response;
 
-  UsersDataTableSource({required this.usersData, required this.ref});
+  UsersDataTableSource(
+      {required this.usersData, required this.ref, required this.response}) {
+    for (int i = 0; i < usersData.length; i++) {
+      User user = usersData.elementAt(i);
+      cachedUsersData.add(user);
+    }
+  }
+
+  List<User> cachedUsersData = [];
+
+  void fetchMore({required List<User> usersData}) {
+    for (int i = 0; i < usersData.length; i++) {
+      User user = usersData.elementAt(i);
+      cachedUsersData.add(user);
+    }
+    notifyListeners();
+  }
 
   @override
   DataRow? getRow(int index) {
@@ -15,7 +33,7 @@ class UsersDataTableSource extends DataTableSource {
       color: index % 2 == 0
           ? MaterialStateProperty.all(const Color(0xffFFFFFF))
           : MaterialStateProperty.all(const Color(0xffFAFAFA)),
-      cells: tableRowCellsItems(usersData.elementAt(index))
+      cells: tableRowCellsItems(cachedUsersData.elementAt(index))
           .map((dataCell) => dataCell)
           .toList(),
     );
@@ -25,7 +43,7 @@ class UsersDataTableSource extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => usersData.length;
+  int get rowCount => cachedUsersData.length;
 
   @override
   int get selectedRowCount => 0;

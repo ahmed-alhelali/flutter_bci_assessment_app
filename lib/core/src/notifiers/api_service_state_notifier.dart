@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
 import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
+import 'package:flutter_bci_assessment_app/core/src/providers/is_laoding_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/services/api_services.dart';
 import 'package:flutter_bci_assessment_app/core/src/typedefs/typedefs.dart';
 import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
@@ -17,7 +18,8 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
 
   final _apiServices = ApiServices();
 
-  Future<Response?> fetchUsers({CurrentPage? currentPage}) async {
+  Future<Response?> fetchUsers(
+      {CurrentPage? currentPage, required WidgetRef ref}) async {
     //this future.delayed is because we getting the usual exception : Providers are not allowed to modify other providers during their initialization
     await Future.delayed(const Duration(milliseconds: 200));
 
@@ -28,6 +30,10 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
     try {
       Response? response =
           await _apiServices.fetchUsers(currentPage: currentPage);
+
+      ref.read(nextPageAvailableToFetch.notifier).state =
+          response?.next_page_url != null;
+
       return response;
     } catch (e) {
       return null;

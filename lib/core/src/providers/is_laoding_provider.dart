@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/api_services_state_notifier_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,3 +7,7 @@ final isLoadingProvider = Provider<bool>((ref) {
 
   return loadingValue;
 });
+
+final currentPageValue = StateProvider<int>((ref) => 1);
+
+final nextPageAvailableToFetch = StateProvider<bool>((ref) => false);

@@ -20,17 +20,17 @@ Response _$ResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Response {
-  int? get currentPage => throw _privateConstructorUsedError;
+  int? get current_page => throw _privateConstructorUsedError;
   List<User>? get data => throw _privateConstructorUsedError;
-  String? get firstPageUrl => throw _privateConstructorUsedError;
+  String? get first_page_url => throw _privateConstructorUsedError;
   int? get from => throw _privateConstructorUsedError;
-  int? get lastPage => throw _privateConstructorUsedError;
-  String? get lastPageUrl => throw _privateConstructorUsedError;
+  int? get last_page => throw _privateConstructorUsedError;
+  String? get last_page_url => throw _privateConstructorUsedError;
   List<Link>? get links => throw _privateConstructorUsedError;
-  String? get nextPageUrl => throw _privateConstructorUsedError;
+  String? get next_page_url => throw _privateConstructorUsedError;
   String? get path => throw _privateConstructorUsedError;
-  int? get parPage => throw _privateConstructorUsedError;
-  String? get prevPageUrl => throw _privateConstructorUsedError;
+  int? get par_page => throw _privateConstructorUsedError;
+  String? get prev_page_url => throw _privateConstructorUsedError;
   int? get to => throw _privateConstructorUsedError;
   int? get total => throw _privateConstructorUsedError;
 
@@ -46,17 +46,17 @@ abstract class $ResponseCopyWith<$Res> {
       _$ResponseCopyWithImpl<$Res, Response>;
   @useResult
   $Res call(
-      {int? currentPage,
+      {int? current_page,
       List<User>? data,
-      String? firstPageUrl,
+      String? first_page_url,
       int? from,
-      int? lastPage,
-      String? lastPageUrl,
+      int? last_page,
+      String? last_page_url,
       List<Link>? links,
-      String? nextPageUrl,
+      String? next_page_url,
       String? path,
-      int? parPage,
-      String? prevPageUrl,
+      int? par_page,
+      String? prev_page_url,
       int? to,
       int? total});
 }
@@ -74,64 +74,64 @@ class _$ResponseCopyWithImpl<$Res, $Val extends Response>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentPage = freezed,
+    Object? current_page = freezed,
     Object? data = freezed,
-    Object? firstPageUrl = freezed,
+    Object? first_page_url = freezed,
     Object? from = freezed,
-    Object? lastPage = freezed,
-    Object? lastPageUrl = freezed,
+    Object? last_page = freezed,
+    Object? last_page_url = freezed,
     Object? links = freezed,
-    Object? nextPageUrl = freezed,
+    Object? next_page_url = freezed,
     Object? path = freezed,
-    Object? parPage = freezed,
-    Object? prevPageUrl = freezed,
+    Object? par_page = freezed,
+    Object? prev_page_url = freezed,
     Object? to = freezed,
     Object? total = freezed,
   }) {
     return _then(_value.copyWith(
-      currentPage: freezed == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
+      current_page: freezed == current_page
+          ? _value.current_page
+          : current_page // ignore: cast_nullable_to_non_nullable
               as int?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<User>?,
-      firstPageUrl: freezed == firstPageUrl
-          ? _value.firstPageUrl
-          : firstPageUrl // ignore: cast_nullable_to_non_nullable
+      first_page_url: freezed == first_page_url
+          ? _value.first_page_url
+          : first_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       from: freezed == from
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
               as int?,
-      lastPage: freezed == lastPage
-          ? _value.lastPage
-          : lastPage // ignore: cast_nullable_to_non_nullable
+      last_page: freezed == last_page
+          ? _value.last_page
+          : last_page // ignore: cast_nullable_to_non_nullable
               as int?,
-      lastPageUrl: freezed == lastPageUrl
-          ? _value.lastPageUrl
-          : lastPageUrl // ignore: cast_nullable_to_non_nullable
+      last_page_url: freezed == last_page_url
+          ? _value.last_page_url
+          : last_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       links: freezed == links
           ? _value.links
           : links // ignore: cast_nullable_to_non_nullable
               as List<Link>?,
-      nextPageUrl: freezed == nextPageUrl
-          ? _value.nextPageUrl
-          : nextPageUrl // ignore: cast_nullable_to_non_nullable
+      next_page_url: freezed == next_page_url
+          ? _value.next_page_url
+          : next_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       path: freezed == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as String?,
-      parPage: freezed == parPage
-          ? _value.parPage
-          : parPage // ignore: cast_nullable_to_non_nullable
+      par_page: freezed == par_page
+          ? _value.par_page
+          : par_page // ignore: cast_nullable_to_non_nullable
               as int?,
-      prevPageUrl: freezed == prevPageUrl
-          ? _value.prevPageUrl
-          : prevPageUrl // ignore: cast_nullable_to_non_nullable
+      prev_page_url: freezed == prev_page_url
+          ? _value.prev_page_url
+          : prev_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       to: freezed == to
           ? _value.to
@@ -153,17 +153,17 @@ abstract class _$$_ResponseCopyWith<$Res> implements $ResponseCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? currentPage,
+      {int? current_page,
       List<User>? data,
-      String? firstPageUrl,
+      String? first_page_url,
       int? from,
-      int? lastPage,
-      String? lastPageUrl,
+      int? last_page,
+      String? last_page_url,
       List<Link>? links,
-      String? nextPageUrl,
+      String? next_page_url,
       String? path,
-      int? parPage,
-      String? prevPageUrl,
+      int? par_page,
+      String? prev_page_url,
       int? to,
       int? total});
 }
@@ -179,64 +179,64 @@ class __$$_ResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentPage = freezed,
+    Object? current_page = freezed,
     Object? data = freezed,
-    Object? firstPageUrl = freezed,
+    Object? first_page_url = freezed,
     Object? from = freezed,
-    Object? lastPage = freezed,
-    Object? lastPageUrl = freezed,
+    Object? last_page = freezed,
+    Object? last_page_url = freezed,
     Object? links = freezed,
-    Object? nextPageUrl = freezed,
+    Object? next_page_url = freezed,
     Object? path = freezed,
-    Object? parPage = freezed,
-    Object? prevPageUrl = freezed,
+    Object? par_page = freezed,
+    Object? prev_page_url = freezed,
     Object? to = freezed,
     Object? total = freezed,
   }) {
     return _then(_$_Response(
-      currentPage: freezed == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
+      current_page: freezed == current_page
+          ? _value.current_page
+          : current_page // ignore: cast_nullable_to_non_nullable
               as int?,
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<User>?,
-      firstPageUrl: freezed == firstPageUrl
-          ? _value.firstPageUrl
-          : firstPageUrl // ignore: cast_nullable_to_non_nullable
+      first_page_url: freezed == first_page_url
+          ? _value.first_page_url
+          : first_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       from: freezed == from
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
               as int?,
-      lastPage: freezed == lastPage
-          ? _value.lastPage
-          : lastPage // ignore: cast_nullable_to_non_nullable
+      last_page: freezed == last_page
+          ? _value.last_page
+          : last_page // ignore: cast_nullable_to_non_nullable
               as int?,
-      lastPageUrl: freezed == lastPageUrl
-          ? _value.lastPageUrl
-          : lastPageUrl // ignore: cast_nullable_to_non_nullable
+      last_page_url: freezed == last_page_url
+          ? _value.last_page_url
+          : last_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       links: freezed == links
           ? _value._links
           : links // ignore: cast_nullable_to_non_nullable
               as List<Link>?,
-      nextPageUrl: freezed == nextPageUrl
-          ? _value.nextPageUrl
-          : nextPageUrl // ignore: cast_nullable_to_non_nullable
+      next_page_url: freezed == next_page_url
+          ? _value.next_page_url
+          : next_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       path: freezed == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
               as String?,
-      parPage: freezed == parPage
-          ? _value.parPage
-          : parPage // ignore: cast_nullable_to_non_nullable
+      par_page: freezed == par_page
+          ? _value.par_page
+          : par_page // ignore: cast_nullable_to_non_nullable
               as int?,
-      prevPageUrl: freezed == prevPageUrl
-          ? _value.prevPageUrl
-          : prevPageUrl // ignore: cast_nullable_to_non_nullable
+      prev_page_url: freezed == prev_page_url
+          ? _value.prev_page_url
+          : prev_page_url // ignore: cast_nullable_to_non_nullable
               as String?,
       to: freezed == to
           ? _value.to
@@ -254,17 +254,17 @@ class __$$_ResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Response implements _Response {
   const _$_Response(
-      {required this.currentPage,
+      {required this.current_page,
       required final List<User>? data,
-      required this.firstPageUrl,
+      required this.first_page_url,
       required this.from,
-      required this.lastPage,
-      required this.lastPageUrl,
+      required this.last_page,
+      required this.last_page_url,
       required final List<Link>? links,
-      required this.nextPageUrl,
+      required this.next_page_url,
       required this.path,
-      required this.parPage,
-      required this.prevPageUrl,
+      required this.par_page,
+      required this.prev_page_url,
       required this.to,
       required this.total})
       : _data = data,
@@ -274,7 +274,7 @@ class _$_Response implements _Response {
       _$$_ResponseFromJson(json);
 
   @override
-  final int? currentPage;
+  final int? current_page;
   final List<User>? _data;
   @override
   List<User>? get data {
@@ -286,13 +286,13 @@ class _$_Response implements _Response {
   }
 
   @override
-  final String? firstPageUrl;
+  final String? first_page_url;
   @override
   final int? from;
   @override
-  final int? lastPage;
+  final int? last_page;
   @override
-  final String? lastPageUrl;
+  final String? last_page_url;
   final List<Link>? _links;
   @override
   List<Link>? get links {
@@ -304,13 +304,13 @@ class _$_Response implements _Response {
   }
 
   @override
-  final String? nextPageUrl;
+  final String? next_page_url;
   @override
   final String? path;
   @override
-  final int? parPage;
+  final int? par_page;
   @override
-  final String? prevPageUrl;
+  final String? prev_page_url;
   @override
   final int? to;
   @override
@@ -318,7 +318,7 @@ class _$_Response implements _Response {
 
   @override
   String toString() {
-    return 'Response(currentPage: $currentPage, data: $data, firstPageUrl: $firstPageUrl, from: $from, lastPage: $lastPage, lastPageUrl: $lastPageUrl, links: $links, nextPageUrl: $nextPageUrl, path: $path, parPage: $parPage, prevPageUrl: $prevPageUrl, to: $to, total: $total)';
+    return 'Response(current_page: $current_page, data: $data, first_page_url: $first_page_url, from: $from, last_page: $last_page, last_page_url: $last_page_url, links: $links, next_page_url: $next_page_url, path: $path, par_page: $par_page, prev_page_url: $prev_page_url, to: $to, total: $total)';
   }
 
   @override
@@ -326,23 +326,24 @@ class _$_Response implements _Response {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Response &&
-            (identical(other.currentPage, currentPage) ||
-                other.currentPage == currentPage) &&
+            (identical(other.current_page, current_page) ||
+                other.current_page == current_page) &&
             const DeepCollectionEquality().equals(other._data, _data) &&
-            (identical(other.firstPageUrl, firstPageUrl) ||
-                other.firstPageUrl == firstPageUrl) &&
+            (identical(other.first_page_url, first_page_url) ||
+                other.first_page_url == first_page_url) &&
             (identical(other.from, from) || other.from == from) &&
-            (identical(other.lastPage, lastPage) ||
-                other.lastPage == lastPage) &&
-            (identical(other.lastPageUrl, lastPageUrl) ||
-                other.lastPageUrl == lastPageUrl) &&
+            (identical(other.last_page, last_page) ||
+                other.last_page == last_page) &&
+            (identical(other.last_page_url, last_page_url) ||
+                other.last_page_url == last_page_url) &&
             const DeepCollectionEquality().equals(other._links, _links) &&
-            (identical(other.nextPageUrl, nextPageUrl) ||
-                other.nextPageUrl == nextPageUrl) &&
+            (identical(other.next_page_url, next_page_url) ||
+                other.next_page_url == next_page_url) &&
             (identical(other.path, path) || other.path == path) &&
-            (identical(other.parPage, parPage) || other.parPage == parPage) &&
-            (identical(other.prevPageUrl, prevPageUrl) ||
-                other.prevPageUrl == prevPageUrl) &&
+            (identical(other.par_page, par_page) ||
+                other.par_page == par_page) &&
+            (identical(other.prev_page_url, prev_page_url) ||
+                other.prev_page_url == prev_page_url) &&
             (identical(other.to, to) || other.to == to) &&
             (identical(other.total, total) || other.total == total));
   }
@@ -351,17 +352,17 @@ class _$_Response implements _Response {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      currentPage,
+      current_page,
       const DeepCollectionEquality().hash(_data),
-      firstPageUrl,
+      first_page_url,
       from,
-      lastPage,
-      lastPageUrl,
+      last_page,
+      last_page_url,
       const DeepCollectionEquality().hash(_links),
-      nextPageUrl,
+      next_page_url,
       path,
-      parPage,
-      prevPageUrl,
+      par_page,
+      prev_page_url,
       to,
       total);
 
@@ -381,44 +382,44 @@ class _$_Response implements _Response {
 
 abstract class _Response implements Response {
   const factory _Response(
-      {required final int? currentPage,
+      {required final int? current_page,
       required final List<User>? data,
-      required final String? firstPageUrl,
+      required final String? first_page_url,
       required final int? from,
-      required final int? lastPage,
-      required final String? lastPageUrl,
+      required final int? last_page,
+      required final String? last_page_url,
       required final List<Link>? links,
-      required final String? nextPageUrl,
+      required final String? next_page_url,
       required final String? path,
-      required final int? parPage,
-      required final String? prevPageUrl,
+      required final int? par_page,
+      required final String? prev_page_url,
       required final int? to,
       required final int? total}) = _$_Response;
 
   factory _Response.fromJson(Map<String, dynamic> json) = _$_Response.fromJson;
 
   @override
-  int? get currentPage;
+  int? get current_page;
   @override
   List<User>? get data;
   @override
-  String? get firstPageUrl;
+  String? get first_page_url;
   @override
   int? get from;
   @override
-  int? get lastPage;
+  int? get last_page;
   @override
-  String? get lastPageUrl;
+  String? get last_page_url;
   @override
   List<Link>? get links;
   @override
-  String? get nextPageUrl;
+  String? get next_page_url;
   @override
   String? get path;
   @override
-  int? get parPage;
+  int? get par_page;
   @override
-  String? get prevPageUrl;
+  String? get prev_page_url;
   @override
   int? get to;
   @override
