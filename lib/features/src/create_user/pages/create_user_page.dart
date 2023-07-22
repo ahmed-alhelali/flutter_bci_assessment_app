@@ -1,22 +1,29 @@
+import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/core/src/configs/account_drop_down_items.dart';
+import 'package:flutter_bci_assessment_app/core/src/configs/branch_drop_down_items.dart';
+import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
+import 'package:flutter_bci_assessment_app/core/src/providers/api_services_state_notifier_provider.dart';
+import 'package:flutter_bci_assessment_app/core/src/theme/app_formatters.dart';
 import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateUserPage extends StatefulWidget {
+class CreateUserPage extends ConsumerStatefulWidget {
   const CreateUserPage({
     super.key,
   });
 
   @override
-  State<CreateUserPage> createState() => _CreateUserPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _CreateUserPageState();
 }
 
-class _CreateUserPageState extends State<CreateUserPage> {
+class _CreateUserPageState extends ConsumerState<CreateUserPage> {
   late TextEditingController nameController;
   late TextEditingController emailController;
   late TextEditingController phoneNumberController;
-  late TextEditingController assignBranchController;
-  late TextEditingController accountController;
+  late SingleValueDropDownController assignBranchController;
+  late SingleValueDropDownController accountController;
   late TextEditingController ageController;
   late TextEditingController addressController;
   late TextEditingController cityController;
@@ -31,8 +38,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
     nameController = TextEditingController();
     emailController = TextEditingController();
     phoneNumberController = TextEditingController();
-    assignBranchController = TextEditingController();
-    accountController = TextEditingController();
+    assignBranchController = SingleValueDropDownController();
+    accountController = SingleValueDropDownController();
     ageController = TextEditingController();
     addressController = TextEditingController();
     cityController = TextEditingController();
@@ -83,160 +90,157 @@ class _CreateUserPageState extends State<CreateUserPage> {
                   return SingleChildScrollView(
                     child: Column(
                       children: [
-                        if (constrainsWidth <= 550)
+                        AppGaps.kGap12,
+                        if (constrainsWidth <= 480)
                           Form(
                             child: Column(
                               children: [
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: nameController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.name,
-                                    ),
+                                TextFormField(
+                                  controller: nameController,
+                                  decoration: const InputDecoration(
+                                    labelText: AppStrings.name,
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: emailController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.email,
-                                    ),
+                                TextFormField(
+                                  controller: emailController,
+                                  keyboardType: TextInputType.emailAddress,
+                                  inputFormatters: [
+                                    AppFormatters.emailFormatter,
+                                  ],
+                                  decoration: const InputDecoration(
+                                    labelText: AppStrings.email,
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: phoneNumberController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.phoneNumber,
-                                    ),
+                                TextFormField(
+                                  controller: phoneNumberController,
+                                  decoration: const InputDecoration(
+                                    labelText: AppStrings.phoneNumber,
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: assignBranchController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.assignBranch,
-                                    ),
+                                DropDownTextField(
+                                  clearOption: true,
+                                  textFieldDecoration: const InputDecoration(
+                                    labelText: AppStrings.assignBranch,
+                                  ),
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return "Required field";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  dropDownItemCount: branchDropDownItems.length,
+                                  dropDownList: branchDropDownItems,
+                                  onChanged: (val) {},
+                                ),
+                                AppGaps.kGap12,
+                                DropDownTextField(
+                                  textFieldDecoration: const InputDecoration(
+                                    labelText: AppStrings.account,
+                                  ),
+                                  clearOption: true,
+                                  controller: accountController,
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return "Required field";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  dropDownItemCount:
+                                      accountsDropDownItems.length,
+                                  dropDownList: accountsDropDownItems,
+                                  onChanged: (val) {},
+                                ),
+                                AppGaps.kGap12,
+                                TextFormField(
+                                  controller: ageController,
+                                  inputFormatters: [
+                                    AppFormatters.numbersFormatter,
+                                  ],
+                                  keyboardType: TextInputType.number,
+                                  decoration: const InputDecoration(
+                                    labelText: AppStrings.age,
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: accountController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.account,
-                                    ),
+                                TextFormField(
+                                  controller: addressController,
+                                  decoration: const InputDecoration(
+                                    labelText: AppStrings.address,
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: ageController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.age,
-                                    ),
+                                TextFormField(
+                                  controller: cityController,
+                                  decoration: const InputDecoration(
+                                    labelText: AppStrings.city,
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: addressController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.address,
-                                    ),
+                                TextFormField(
+                                  controller: countryController,
+                                  decoration: const InputDecoration(
+                                    labelText: AppStrings.country,
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: cityController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.city,
-                                    ),
-                                  ),
-                                ),
-                                AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: countryController,
-                                    decoration: const InputDecoration(
-                                      labelText: AppStrings.country,
-                                    ),
-                                  ),
-                                ),
-                                AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: passwordController,
-                                    decoration: InputDecoration(
-                                      labelText: AppStrings.password,
-                                      suffixIcon: IconButton(
-                                        icon: const AppIcon(
-                                          icon: AppIcons.kEyeIcon,
-                                        ),
-                                        onPressed: () {},
+                                TextFormField(
+                                  controller: passwordController,
+                                  decoration: InputDecoration(
+                                    labelText: AppStrings.password,
+                                    suffixIcon: IconButton(
+                                      icon: const AppIcon(
+                                        icon: AppIcons.kEyeIcon,
                                       ),
+                                      onPressed: () {},
                                     ),
                                   ),
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: passwordConfirmationController,
-                                    decoration: InputDecoration(
-                                      labelText: AppStrings.confirmPassword,
-                                      suffixIcon: IconButton(
-                                        icon: const AppIcon(
-                                          icon: AppIcons.kEyeIcon,
-                                        ),
-                                        onPressed: () {},
+                                TextFormField(
+                                  controller: passwordConfirmationController,
+                                  decoration: InputDecoration(
+                                    labelText: AppStrings.confirmPassword,
+                                    suffixIcon: IconButton(
+                                      icon: const AppIcon(
+                                        icon: AppIcons.kEyeIcon,
                                       ),
+                                      onPressed: () {},
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        if (constrainsWidth > 550 && constrainsWidth <= 700)
+                        if (constrainsWidth > 480 && constrainsWidth <= 700)
                           Form(
                             child: Column(
                               children: [
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: nameController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.name,
-                                          ),
+                                      child: TextFormField(
+                                        controller: nameController,
+                                        decoration: const InputDecoration(
+                                          labelText: AppStrings.name,
                                         ),
                                       ),
                                     ),
                                     AppGaps.kGap12,
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: emailController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.email,
-                                          ),
+                                      child: TextFormField(
+                                        controller: emailController,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        inputFormatters: [
+                                          AppFormatters.emailFormatter,
+                                        ],
+                                        decoration: const InputDecoration(
+                                          labelText: AppStrings.email,
                                         ),
                                       ),
                                     ),
@@ -246,25 +250,70 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: phoneNumberController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.phoneNumber,
-                                          ),
+                                      child: TextFormField(
+                                        controller: phoneNumberController,
+                                        decoration: const InputDecoration(
+                                          labelText: AppStrings.phoneNumber,
                                         ),
                                       ),
                                     ),
                                     AppGaps.kGap12,
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: assignBranchController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.assignBranch,
-                                          ),
+                                      child: DropDownTextField(
+                                        clearOption: true,
+                                        textFieldDecoration:
+                                            const InputDecoration(
+                                          labelText: AppStrings.assignBranch,
+                                        ),
+                                        validator: (value) {
+                                          if (value == null) {
+                                            return "Required field";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                        dropDownItemCount:
+                                            branchDropDownItems.length,
+                                        dropDownList: branchDropDownItems,
+                                        onChanged: (val) {},
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                AppGaps.kGap12,
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: DropDownTextField(
+                                        clearOption: true,
+                                        controller: accountController,
+                                        validator: (value) {
+                                          if (value == null) {
+                                            return "Required field";
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                        textFieldDecoration:
+                                            const InputDecoration(
+                                          labelText: AppStrings.account,
+                                        ),
+                                        dropDownItemCount:
+                                            accountsDropDownItems.length,
+                                        dropDownList: accountsDropDownItems,
+                                        onChanged: (val) {},
+                                      ),
+                                    ),
+                                    AppGaps.kGap12,
+                                    Expanded(
+                                      child: TextFormField(
+                                        controller: ageController,
+                                        inputFormatters: [
+                                          AppFormatters.numbersFormatter,
+                                        ],
+                                        keyboardType: TextInputType.number,
+                                        decoration: const InputDecoration(
+                                          labelText: AppStrings.age,
                                         ),
                                       ),
                                     ),
@@ -274,25 +323,19 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: accountController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.account,
-                                          ),
+                                      child: TextFormField(
+                                        controller: addressController,
+                                        decoration: const InputDecoration(
+                                          labelText: AppStrings.address,
                                         ),
                                       ),
                                     ),
                                     AppGaps.kGap12,
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: ageController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.age,
-                                          ),
+                                      child: TextFormField(
+                                        controller: cityController,
+                                        decoration: const InputDecoration(
+                                          labelText: AppStrings.city,
                                         ),
                                       ),
                                     ),
@@ -302,58 +345,24 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 Row(
                                   children: [
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: addressController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.address,
-                                          ),
+                                      child: TextFormField(
+                                        controller: countryController,
+                                        decoration: const InputDecoration(
+                                          labelText: AppStrings.country,
                                         ),
                                       ),
                                     ),
                                     AppGaps.kGap12,
                                     Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: cityController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.city,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                AppGaps.kGap12,
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: countryController,
-                                          decoration: const InputDecoration(
-                                            labelText: AppStrings.country,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    AppGaps.kGap12,
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: 48,
-                                        child: TextFormField(
-                                          controller: passwordController,
-                                          decoration: InputDecoration(
-                                            labelText: AppStrings.password,
-                                            suffixIcon: IconButton(
-                                              icon: const AppIcon(
-                                                icon: AppIcons.kEyeIcon,
-                                              ),
-                                              onPressed: () {},
+                                      child: TextFormField(
+                                        controller: passwordController,
+                                        decoration: InputDecoration(
+                                          labelText: AppStrings.password,
+                                          suffixIcon: IconButton(
+                                            icon: const AppIcon(
+                                              icon: AppIcons.kEyeIcon,
                                             ),
+                                            onPressed: () {},
                                           ),
                                         ),
                                       ),
@@ -361,18 +370,15 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                   ],
                                 ),
                                 AppGaps.kGap12,
-                                SizedBox(
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: passwordConfirmationController,
-                                    decoration: InputDecoration(
-                                      labelText: AppStrings.confirmPassword,
-                                      suffixIcon: IconButton(
-                                        icon: const AppIcon(
-                                          icon: AppIcons.kEyeIcon,
-                                        ),
-                                        onPressed: () {},
+                                TextFormField(
+                                  controller: passwordConfirmationController,
+                                  decoration: InputDecoration(
+                                    labelText: AppStrings.confirmPassword,
+                                    suffixIcon: IconButton(
+                                      icon: const AppIcon(
+                                        icon: AppIcons.kEyeIcon,
                                       ),
+                                      onPressed: () {},
                                     ),
                                   ),
                                 ),
@@ -383,12 +389,11 @@ class _CreateUserPageState extends State<CreateUserPage> {
                           Form(
                             child: Wrap(
                               crossAxisAlignment: WrapCrossAlignment.center,
-                              runSpacing: 12,
+                              runSpacing: 10,
                               spacing: 14,
                               children: [
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: nameController,
                                     decoration: const InputDecoration(
@@ -398,9 +403,12 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    inputFormatters: [
+                                      AppFormatters.emailFormatter,
+                                    ],
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.email,
                                     ),
@@ -408,7 +416,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: phoneNumberController,
                                     decoration: const InputDecoration(
@@ -418,29 +425,53 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
-                                  child: TextFormField(
-                                    controller: assignBranchController,
-                                    decoration: const InputDecoration(
+                                  child: DropDownTextField(
+                                    clearOption: true,
+                                    textFieldDecoration: const InputDecoration(
                                       labelText: AppStrings.assignBranch,
                                     ),
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return "Required field";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    dropDownItemCount:
+                                        branchDropDownItems.length,
+                                    dropDownList: branchDropDownItems,
+                                    onChanged: (val) {},
                                   ),
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
-                                  child: TextFormField(
+                                  child: DropDownTextField(
+                                    clearOption: true,
                                     controller: accountController,
-                                    decoration: const InputDecoration(
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return "Required field";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    textFieldDecoration: const InputDecoration(
                                       labelText: AppStrings.account,
                                     ),
+                                    dropDownItemCount:
+                                        accountsDropDownItems.length,
+                                    dropDownList: accountsDropDownItems,
+                                    onChanged: (val) {},
                                   ),
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: ageController,
+                                    keyboardType: TextInputType.number,
+                                    inputFormatters: [
+                                      AppFormatters.numbersFormatter,
+                                    ],
                                     decoration: const InputDecoration(
                                       labelText: AppStrings.age,
                                     ),
@@ -448,7 +479,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: addressController,
                                     decoration: const InputDecoration(
@@ -458,7 +488,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: cityController,
                                     decoration: const InputDecoration(
@@ -468,7 +497,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.32,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: countryController,
                                     decoration: const InputDecoration(
@@ -478,7 +506,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.49,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: passwordController,
                                     decoration: InputDecoration(
@@ -494,7 +521,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
                                 ),
                                 SizedBox(
                                   width: constrainsWidth * 0.49,
-                                  height: 48,
                                   child: TextFormField(
                                     controller: passwordConfirmationController,
                                     decoration: InputDecoration(
@@ -544,7 +570,25 @@ class _CreateUserPageState extends State<CreateUserPage> {
                               width: 150,
                               height: 40,
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  const user = User(
+                                    name: "name",
+                                    phone: "phone",
+                                    branch: "branch",
+                                    account: "account",
+                                    age: "age",
+                                    address: "address",
+                                    city: "city",
+                                    country: "country",
+                                    password: "password",
+                                    createdAt: "createdAt",
+                                  );
+
+                                  await ref
+                                      .read(apiServiceStateNotifierProvider
+                                          .notifier)
+                                      .addUser(user: user);
+                                },
                                 child: Text(
                                   AppStrings.save,
                                   style:
@@ -554,6 +598,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
                             ),
                           ],
                         ),
+                        AppGaps.kGap12,
+                        AppGaps.kGap12,
                       ],
                     ),
                   );

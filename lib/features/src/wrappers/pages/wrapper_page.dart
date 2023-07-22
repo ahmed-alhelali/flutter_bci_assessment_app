@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/core/src/configs/app_bar_actions_items.dart';
 
 class WrapperPage extends StatelessWidget {
   const WrapperPage({
@@ -28,43 +29,11 @@ class WrapperPage extends StatelessWidget {
           AppStrings.userManagement,
         ),
         actions: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: IconButton(
-                  icon: const AppIcon(
-                    icon: AppIcons.kNotificationsIcon,
-                  ),
-                  onPressed: () {},
+          context.screenWidth <= 520
+              ? appBarActionsItems.last
+              : Row(
+                  children: appBarActionsItems.map((item) => item).toList(),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: IconButton(
-                  icon: const AppIcon(
-                    icon: AppIcons.kInfoIcon,
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Row(
-                  children: [
-                    Text(
-                      AppStrings.superAdmin,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    AppGaps.kGap4,
-                    const AppIcon(
-                      icon: AppIcons.kArrowDownIcon,
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
         ],
         backgroundColor: Colors.transparent,
       ),

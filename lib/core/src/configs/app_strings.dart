@@ -1,7 +1,10 @@
 class AppStrings {
+  static const String loading = 'Loading';
   static const String testX = 'TestX';
 
   static const String superAdmin = 'Super Admin';
+  static const String notifications = 'Notifications';
+  static const String about = 'About';
   static const String addUser = 'Add User';
   static const String createUser = 'Create User';
 
@@ -36,4 +39,12 @@ class AppStrings {
 
   static const String row = 'Row';
   static const String total = 'Total';
+
+  static const String abha = 'Abha';
+  static const String jizan = 'Jizan';
+  static const String badr = 'Badr';
+
+  static const String manager = 'Manager';
+  static const String administration = 'Administration';
+  static const String user = 'User';
 }

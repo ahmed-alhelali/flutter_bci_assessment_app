@@ -6,19 +6,25 @@ class AppIcon extends StatelessWidget {
     super.key,
     required this.icon,
     this.color,
+    this.height,
+    this.width,
   });
 
   final String icon;
   final Color? color;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 24,
-      height: 24,
+      width: width ?? 24,
+      height: height ?? 24,
       alignment: Alignment.center,
       child: SvgPicture.asset(
         icon,
+        width: width ?? 24,
+        height: height ?? 24,
       ),
     );
   }

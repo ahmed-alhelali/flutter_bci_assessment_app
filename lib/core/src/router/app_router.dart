@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/features/src/create_user/pages/create_user_page.dart';
+import 'package:flutter_bci_assessment_app/features/src/users_list/pages/users_list_page.dart';
 import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/split_page.dart';
 import 'package:flutter_bci_assessment_app/features/src/widgets/drawer_widget.dart';
 import 'package:go_router/go_router.dart';

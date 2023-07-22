@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
+import 'package:flutter_bci_assessment_app/core/src/providers/is_laoding_provider.dart';
+import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SplitPage extends StatelessWidget {
+class SplitPage extends ConsumerWidget {
   const SplitPage({
     Key? key,
     required this.appDrawer,
     required this.appContent,
-    this.appMobileBreakpoint = AppBreakPoints.appMobileBreakPoint,
-    this.appTabletBreakPoint = AppBreakPoints.appTabletBreakPoint,
+    this.appBreakPoint = AppBreakPoints.appBreakPoint,
     this.appDrawerWidth = AppBreakPoints.appDrawerWidth,
   }) : super(key: key);
   final Widget appDrawer;
   final Widget appContent;
-  final double appMobileBreakpoint;
-  final double appTabletBreakPoint;
+  final double appBreakPoint;
   final double appDrawerWidth;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final screenWidth = MediaQuery.of(context).size.width;
-    if (screenWidth > appMobileBreakpoint) {
+
+    ref.listen<bool>(
+      isLoadingProvider,
+      (_, isLoading) {
+        if (isLoading) {
+          LoadingWidget.instance().show(
+            context: context,
+          );
+        } else {
+          LoadingWidget.instance().hide();
+        }
+      },
+    );
+
+    if (screenWidth > appBreakPoint) {
       return Row(
         children: [
           SizedBox(

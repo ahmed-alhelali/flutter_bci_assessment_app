@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
 
-
 class UsersListPage extends StatelessWidget {
   const UsersListPage({
     super.key,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
 import 'core/core.dart';
 
 class App extends StatefulWidget {

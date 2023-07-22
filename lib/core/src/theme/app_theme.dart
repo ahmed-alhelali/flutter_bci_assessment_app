@@ -72,6 +72,7 @@ class AppTheme {
           seedColor: AppColors.kPrimaryColorMain,
         ),
         inputDecorationTheme: InputDecorationTheme(
+          isDense: true,
           border: const OutlineInputBorder(
             borderSide: BorderSide(
               color: AppColors.kBorderColorMain,
