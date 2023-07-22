@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/is_laoding_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SplitPage extends ConsumerWidget {
   const SplitPage({
@@ -20,6 +22,24 @@ class SplitPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final screenWidth = MediaQuery.of(context).size.width;
+
+    Future.delayed(
+        const Duration(seconds: 1),
+        () => LoadingWidget.instance().show(
+              context: context,
+            ));
+
+    Future.delayed(
+      const Duration(seconds: 3),
+      () => LoadingWidget.instance().controller!.update(
+          "User successfully created!",
+          SvgPicture.asset(
+            AppIcons.kCircularCheckIcon,
+            width: 40,
+            height: 40,
+            fit: BoxFit.fill,
+          )),
+    );
 
     ref.listen<bool>(
       isLoadingProvider,

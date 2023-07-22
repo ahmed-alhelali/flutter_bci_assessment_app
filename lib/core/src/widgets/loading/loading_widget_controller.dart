@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' show immutable;
 
 typedef DisposeLoadingWidget = bool Function();
-typedef UpdateLoadingWidget = bool Function(String text);
+typedef UpdateLoadingWidget = bool Function(String text, Widget widget);
 
 @immutable
 class LoadingWidgetController {
