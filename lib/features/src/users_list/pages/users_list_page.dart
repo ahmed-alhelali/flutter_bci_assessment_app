@@ -1,7 +1,5 @@
-import 'package:advanced_datatable/advanced_datatable_source.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/classes/users_data_table_source.dart';
 import 'package:flutter_bci_assessment_app/core/src/configs/items/table_columns_items.dart';
 import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/api_services_state_notifier_provider.dart';

@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/providers/is_laoding_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SplitPage extends ConsumerWidget {
   const SplitPage({
