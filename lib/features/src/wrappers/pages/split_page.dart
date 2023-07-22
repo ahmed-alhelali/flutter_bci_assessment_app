@@ -23,24 +23,6 @@ class SplitPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    Future.delayed(
-        const Duration(seconds: 1),
-        () => LoadingWidget.instance().show(
-              context: context,
-            ));
-
-    Future.delayed(
-      const Duration(seconds: 3),
-      () => LoadingWidget.instance().controller!.update(
-          "User successfully created!",
-          SvgPicture.asset(
-            AppIcons.kCircularCheckIcon,
-            width: 40,
-            height: 40,
-            fit: BoxFit.fill,
-          )),
-    );
-
     ref.listen<bool>(
       isLoadingProvider,
       (_, isLoading) {

@@ -55,8 +55,6 @@ class LoadingWidget {
     if (state == null) {
       return null;
     }
-    final renderBox = context.findRenderObject() as RenderBox;
-    final size = renderBox.size;
 
     final overlay = OverlayEntry(
       builder: (context) {
