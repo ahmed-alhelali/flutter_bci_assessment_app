@@ -39,7 +39,7 @@ class _StateUsersListPage extends ConsumerState<UsersListPage> {
   Widget build(BuildContext context) {
     return WrapperPage(
       body: SizedBox(
-        width: 825,
+        width: 1200,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

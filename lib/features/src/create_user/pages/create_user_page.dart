@@ -84,7 +84,7 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
           AppGaps.kGap12,
           Expanded(
             child: SizedBox(
-              width: 825,
+              width: 1150,
               child: LayoutBuilder(
                 builder: (context, constrains) {
                   final constrainsWidth = constrains.maxWidth;
@@ -740,7 +740,7 @@ class _CreateUserPageState extends ConsumerState<CreateUserPage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: constrainsWidth * 0.49,
+                                  width: constrainsWidth * 0.485,
                                   child: TextFormField(
                                     obscureText: passwordConfirmationsObscure,
                                     controller: passwordConfirmationController,
