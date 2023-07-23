@@ -85,7 +85,7 @@ class _StateUsersListPage extends ConsumerState<UsersListPage> {
                   rowsPerPage: rowPerPage,
                   onRowsPerPageChanged: (value) {},
                   availableRowsPerPage: [
-                    myData!.rowCount,
+                    rowPerPage,
                   ],
                   showFirstLastButtons: true,
                 ),

@@ -18,16 +18,9 @@ class _AppState extends ConsumerState<App> {
 
     appRouter = AppRouter(ref: ref);
   }
-
+ 
   @override
   Widget build(BuildContext context) {
-
-
-    final appCounter = ref.watch(currentPageProvider.notifier).state;
-
-
-    print(appCounter);
-
     return MaterialApp.router(
       themeMode: ThemeMode.light,
       theme: const AppTheme(ThemeType.light).getTheme(),
