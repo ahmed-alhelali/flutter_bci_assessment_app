@@ -24,7 +24,6 @@ dependencies:
   json_annotation: ^4.8.1
   http: ^1.1.0
   dropdown_textfield: ^1.0.8
-  advanced_datatable: ^0.0.8
 
 dev_dependencies:
   flutter_test:
