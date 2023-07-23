@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
- import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
+import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UsersListPage extends ConsumerStatefulWidget {
@@ -13,10 +13,12 @@ class UsersListPage extends ConsumerStatefulWidget {
 class _StateUsersListPage extends ConsumerState<UsersListPage> {
   Response? response;
   UsersDataTableSource? myData;
+  int rowPerPage = 0;
 
   Future<void> fetchUsersList() async {
-    final apiResponse =
-        await ref.read(apiServiceStateNotifierProvider.notifier).fetchUsers(ref: ref);
+    final apiResponse = await ref
+        .read(apiServiceStateNotifierProvider.notifier)
+        .fetchUsers(ref: ref);
 
     //the mounted check is to makes sure we didn't call setState()
     // if the widget disposed during the UI changes
@@ -24,6 +26,8 @@ class _StateUsersListPage extends ConsumerState<UsersListPage> {
       response = apiResponse;
       myData = UsersDataTableSource(
           usersData: apiResponse!.data ?? [], ref: ref, response: apiResponse);
+
+      rowPerPage = myData!.rowCount;
     });
   }
 
@@ -78,8 +82,11 @@ class _StateUsersListPage extends ConsumerState<UsersListPage> {
                       .map((columnItem) => columnItem)
                       .toList(),
                   horizontalMargin: 60,
-                  rowsPerPage: 10,
-                  availableRowsPerPage: const [10],
+                  rowsPerPage: rowPerPage,
+                  onRowsPerPageChanged: (value) {},
+                  availableRowsPerPage: [
+                    myData!.rowCount,
+                  ],
                   showFirstLastButtons: true,
                 ),
               AppGaps.kGap12,

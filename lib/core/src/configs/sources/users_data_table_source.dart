@@ -17,8 +17,8 @@ class UsersDataTableSource extends DataTableSource {
 
   List<User> cachedUsersData = [];
 
-  void fetchMore({required List<User> usersData}) {
-    for (int i = 0; i < usersData.length; i++) {
+  void fetchMore({required List<User>? usersData}) {
+    for (int i = 0; i < usersData!.length; i++) {
       User user = usersData.elementAt(i);
       cachedUsersData.add(user);
     }
