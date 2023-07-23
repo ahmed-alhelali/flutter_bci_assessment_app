@@ -76,7 +76,7 @@ class _StateUsersListPage extends ConsumerState<UsersListPage> {
               ),
               AppGaps.kGap12,
               if (myData != null)
-                PaginatedDataTable(
+                AppPaginatedDataTable(
                   source: myData!,
                   columns: tableColumnsItems
                       .map((columnItem) => columnItem)
