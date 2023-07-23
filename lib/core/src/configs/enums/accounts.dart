@@ -1,4 +1,4 @@
-import 'package:flutter_bci_assessment_app/core/src/configs/strings/app_strings.dart';
+import 'package:flutter_bci_assessment_app/core/core.dart';
 
 enum Accounts {
   user(

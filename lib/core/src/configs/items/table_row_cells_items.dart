@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 List<DataCell> tableRowCellsItems(User user) => [

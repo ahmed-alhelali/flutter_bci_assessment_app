@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/items/table_row_cells_items.dart';
-import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
-import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bci_assessment_app/core/core.dart';
+ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UsersDataTableSource extends DataTableSource {
   final List<User> usersData;

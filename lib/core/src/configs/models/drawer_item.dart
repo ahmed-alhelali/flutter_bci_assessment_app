@@ -1,4 +1,4 @@
-import 'package:flutter_bci_assessment_app/core/src/configs/enums/drawer_item_id.dart';
+import 'package:flutter_bci_assessment_app/core/core.dart';
 
 class DrawerItem {
   const DrawerItem({

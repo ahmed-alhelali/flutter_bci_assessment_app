@@ -1,5 +1,5 @@
 import 'package:dropdown_textfield/dropdown_textfield.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/enums/branches.dart';
+import 'package:flutter_bci_assessment_app/core/core.dart';
 
 List<DropDownValueModel> branchDropDownItems = List.generate(
   Branches.values.length,

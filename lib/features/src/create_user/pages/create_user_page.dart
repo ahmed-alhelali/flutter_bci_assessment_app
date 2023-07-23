@@ -1,13 +1,7 @@
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/items/account_drop_down_items.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/items/branch_drop_down_items.dart';
-import 'package:flutter_bci_assessment_app/core/src/models/user.dart';
-import 'package:flutter_bci_assessment_app/core/src/providers/api_services_state_notifier_provider.dart';
-import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
-import 'package:flutter_bci_assessment_app/core/src/theme/app_formatters.dart';
-import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
+ import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CreateUserPage extends ConsumerStatefulWidget {

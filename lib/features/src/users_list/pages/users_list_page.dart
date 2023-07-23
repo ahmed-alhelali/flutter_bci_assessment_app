@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/configs/items/table_columns_items.dart';
-import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
-import 'package:flutter_bci_assessment_app/core/src/providers/api_services_state_notifier_provider.dart';
-import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
-import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
+ import 'package:flutter_bci_assessment_app/features/src/wrappers/pages/wrapper_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UsersListPage extends ConsumerStatefulWidget {

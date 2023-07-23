@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bci_assessment_app/core/core.dart';
-import 'package:flutter_bci_assessment_app/core/src/models/response.dart';
-import 'package:flutter_bci_assessment_app/core/src/providers/current_page_name_provider.dart';
-import 'package:flutter_bci_assessment_app/core/src/providers/is_laoding_provider.dart';
 import 'package:flutter_bci_assessment_app/core/src/services/api_services.dart';
 import 'package:flutter_bci_assessment_app/core/src/typedefs/typedefs.dart';
-import 'package:flutter_bci_assessment_app/core/src/widgets/loading/loading_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../models/user.dart';
 
 class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
   ApiServiceStateNotifier() : super(false);
@@ -31,7 +25,7 @@ class ApiServiceStateNotifier extends StateNotifier<IsLoading> {
       Response? response =
           await _apiServices.fetchUsers(currentPage: currentPage);
 
-      ref.read(nextPageAvailableToFetch.notifier).state =
+      ref.read(nextPageAvailableToFetchProvider.notifier).state =
           response?.next_page_url != null;
 
       return response;

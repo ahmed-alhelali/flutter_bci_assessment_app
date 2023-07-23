@@ -6,7 +6,3 @@ final isLoadingProvider = Provider<bool>((ref) {
 
   return loadingValue;
 });
-
-final currentPageValue = StateProvider<int>((ref) => 1);
-
-final nextPageAvailableToFetch = StateProvider<bool>((ref) => false);
